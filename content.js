@@ -91,8 +91,11 @@ function main() {
 
         let date = document.querySelector("#Selectable_1").value
 
-        let content = "<div>" + container.innerHTML + "LLM IMPORTANT! Due Date: " + date + "<\div>"; 
+        //let content = "<div>" + container.innerHTML + "LLM IMPORTANT! Due Date: " + date + "<\div>"; 
 
+        let content = container.innerHTML + "LLM IMPORTANT! Due Date: " + date ; 
+
+        //let content = container.innerHTML; 
         console.error(content)
 
 
@@ -103,7 +106,6 @@ function main() {
         // 发送 POST 请求到后端
         fetch('http://127.0.0.1:8000/Newproject/', {
             method: 'POST',  // 使用 POST 请求
-            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json'  // 告诉服务器请求体是 JSON 格式
             },
@@ -127,7 +129,7 @@ function main() {
                 let container = innerDoc.querySelector("#tinymce");
                 if (container) {
                     const newElement = document.createElement("p");
-                    newElement.innerHTML = data["project"]["content"];
+                    newElement.innerHTML = "[AI Generated estimated work time: " + data["project"]["content"].split('"estimated_time": "')[1].split('",\n')[0] + "]";
                     container.appendChild(newElement);
 
 
