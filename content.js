@@ -149,7 +149,7 @@ function main() {
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
+            Content: JSON.stringify({
               project: {
                 content: JSON.stringify({
                   estimated_time: "2 hours",
