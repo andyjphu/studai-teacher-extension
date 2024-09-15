@@ -143,7 +143,35 @@ function main() {
             });
     }
 
+    function submitToMailBox () {
+        fetch('http://127.0.0.1:8000/UploadToMailbox/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              project: {
+                content: JSON.stringify({
+                  estimated_time: "2 hours",
+                  deadline: "2024-09-18T23:59:00",
+                  project_summary: "This project involves learning how to use Canvas, focusing on its features and functionalities to successfully complete the assignment by the given deadline."
+                }),
+                role: "assistant",
+                function_call: null,
+                tool_calls: null,
+                refusal: null
+              }
+            })
+          })
+          .then(response => response.json())
+          .then(data => console.log(data))
+          .catch(error => console.error('Error:', error));
+          
+    }
 
+    let saveButton = document.querySelector("#edit_assignment_form > div.form-actions > div.assignment__action-buttons > button.btn.btn-primary");
+
+    let saveAndPublishButton = document.querySelector("#edit_assignment_form > div.form-actions > div.assignment__action-buttons > button.btn.btn-primary.btn-publish");
 
 
     // Add an event listener to the div
