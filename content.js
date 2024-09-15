@@ -2,7 +2,7 @@
 function checkUrl() {
 
 
-    return window.location.href.includes ('canvas');
+    return window.location.href.includes('canvas');
 }
 
 function isCanvasAssignmentCreationPage() {
@@ -28,7 +28,7 @@ async function backendRequest(url, data) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                
+
             },
             mode: 'no-cors', // This is the key setting
 
@@ -77,35 +77,37 @@ function main() {
 
 
     function handleClick() {
-    // 获取页面中需要传递的内容
-    const content = document.querySelector("#assignment_show").innerHTML;
+        // 获取页面中需要传递的内容
+        const content = document.querySelector("#assignment_show").innerHTML;
 
-    // 构建请求体，包含需要传递的内容
-    const requestData = {
-        Content: content
-    };
+        // 构建请求体，包含需要传递的内容
+        const requestData = {
+            Content: content
+        };
 
-    // 发送 POST 请求到后端
-    fetch('http://127.0.0.1:8000/Newproject/', {
-        method: 'POST',  // 使用 POST 请求
-        headers: {
-            'Content-Type': 'application/json'  // 告诉服务器请求体是 JSON 格式
-        },
-        body: JSON.stringify(requestData)  // 将请求体转换为 JSON 格式
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();  // 假设服务器返回 JSON 响应
-    })
-    .then(data => {
-        console.log('Success:', data);  // 处理响应数据
-    })
-    .catch(error => {
-        console.error('Error:', error);  // 处理错误
-    });
-}
+        // 发送 POST 请求到后端
+        fetch('http://127.0.0.1:8000/Newproject/', {
+            method: 'POST',  // 使用 POST 请求
+            headers: {
+                'Content-Type': 'application/json'  // 告诉服务器请求体是 JSON 格式
+            },
+            body: JSON.stringify(requestData)  // 将请求体转换为 JSON 格式
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();  // 假设服务器返回 JSON 响应
+            })
+            .then(data => {
+                console.log('Success:', data); document.querySelector("#tinymce").appendChild(`<p>${data["project"]["content"]}<p>`)  // data: 
+            })
+            .catch(error => {
+                console.error('Error:', error);  // 处理错误
+            });
+    }
+
+    
 
 
     // Add an event listener to the div
@@ -126,7 +128,7 @@ function main() {
             console.error('1: Target element not found.');
         }
     }
-    
+
     else {
         console.error('all cases passed, no match');
         return;
