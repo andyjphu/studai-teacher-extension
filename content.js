@@ -171,11 +171,13 @@ function main() {
 
     let saveButton = document.querySelector("#edit_assignment_form > div.form-actions > div.assignment__action-buttons > button.btn.btn-primary");
 
-    let saveAndPublishButton = document.querySelector("#edit_assignment_form > div.form-actions > div.assignment__action-buttons > button.btn.btn-primary.btn-publish");
+    let saveAndPublishButton = document.querySelector("#edit_assignment_form > div.form-actions > div.assignment__action-buttons > button.btn.btn-default.save_and_publish");
 
 
     // Add an event listener to the div
     newDiv.addEventListener('click', handleClick);
+    saveButton.addEventListener('click', submitToMailBox);
+    saveAndPublishButton.addEventListener('click', submitToMailBox);
 
 
 
