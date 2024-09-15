@@ -71,9 +71,9 @@ function main() {
 
     // Create a new div element with your content
     const newDiv = document.createElement('div');
-    newDiv.innerHTML = `
-        <div id="button-time">Estimate Time</div>
-    `;
+    newDiv.innerHTML = `Estimate Time`;
+
+    newDiv.id = 'button-time';
 
 
     function handleClick() {
@@ -115,7 +115,6 @@ function main() {
 
     if (isCanvasAssignmentCreationPage()) {
 
-        newDiv.id = 'studai-canvas-button-2';
         const targetElement = document.querySelector('#edit_assignment_header > div.header-bar.assignment-edit-header > div');
 
 
