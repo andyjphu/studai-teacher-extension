@@ -78,9 +78,19 @@ function main() {
 
     function handleClick() {
         // 获取页面中需要传递的内容
-        const content = document.querySelector("#assignment_show").innerHTML;
 
-        // 构建请求体，包含需要传递的内容
+        let iframe = document.querySelector("#assignment_description_ifr");
+        if (!iframe) {
+            console.error('Iframe not found');
+            return;
+        }
+
+        let innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+        let container = innerDoc.querySelector("#tinymce");
+
+        let content = container.innerHTML;
+
+
         const requestData = {
             Content: content
         };
@@ -100,14 +110,32 @@ function main() {
                 return response.json();  // 假设服务器返回 JSON 响应
             })
             .then(data => {
-                console.log('Success:', data); document.querySelector("#tinymce").appendChild(`<p>${data["project"]["content"]}<p>`)  // data: 
+                console.log(data);  // 处理响应数据
+                let iframe = document.querySelector("#assignment_description_ifr");
+                if (!iframe) {
+                    console.error('Iframe not found');
+                    return;
+                }
+
+                let innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+                let container = innerDoc.querySelector("#tinymce");
+                if (container) {
+                    const newElement = document.createElement("p");
+                    newElement.innerHTML = data["project"]["content"];
+                    container.appendChild(newElement);
+
+
+                    console.log("CONTAINER EXISTS, APPENDED")
+                }
+
+
             })
             .catch(error => {
                 console.error('Error:', error);  // 处理错误
             });
     }
 
-    
+
 
 
     // Add an event listener to the div
