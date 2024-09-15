@@ -127,30 +127,7 @@ function main() {
             console.error('1: Target element not found.');
         }
     }
-    else if (isCanvasAssignmentViewPage()) {
-        
-        newDiv.id = 'studai-canvas-button-3';
-        const targetElement = document.querySelector('#assignment_show > div.assignment-title > div.assignment-buttons');
-
-
-        // Check if the target element exists before appending
-        if (targetElement) {
-            // Get the second-to-last child of the target element
-            const children = targetElement.children;
-            const secondToLastChild = children[children.length - 2];
-
-            // Check if there is at least two children
-            if (secondToLastChild) {
-                // Insert the new element before the second-to-last child
-                targetElement.insertBefore(newDiv, secondToLastChild);
-            } else {
-                // If there are fewer than two children, append to the end
-                targetElement.appendChild(newDiv);
-            }
-        } else {
-            console.error('2: Target element not found.');
-        }
-    }
+    
     else {
         console.error('all cases passed, no match');
         return;
