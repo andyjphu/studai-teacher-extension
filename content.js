@@ -125,6 +125,19 @@ function main() {
                     return;
                 }
 
+
+
+                mlResponse = data["project"]["content"];
+
+                //console.log("ML RESPONSE: " + mlResponse + mlResponse.split('"project_summary": "'));
+
+
+
+                // console.log("rDeadline: " + rDeadline);
+                // console.log("rSummary: " + rSummary);
+                // console.log("rTime: " + rTime);
+
+
                 let innerDoc = iframe.contentDocument || iframe.contentWindow.document;
                 let container = innerDoc.querySelector("#tinymce");
                 if (container) {
@@ -132,7 +145,6 @@ function main() {
                     newElement.innerHTML = "[AI Generated estimated work time: " + data["project"]["content"].split('"estimated_time": "')[1].split('",\n')[0] + "]";
                     container.appendChild(newElement);
 
-                    mlResponse = data["project"]["content"];
 
                     console.log("CONTAINER EXISTS, APPENDED")
                 }
@@ -148,9 +160,8 @@ function main() {
 
 
         let rDeadline = document.querySelector("#Selectable_1").value;
-        let rSummary = mlResponse.split('"project summary": "')[1].split('"\n')[0];
+        let rSummary = mlResponse.split('"project_summary": "')[1].split('"\n')[0];
         let rTime = mlResponse.split('"estimated_time": "')[1].split('",\n')[0];
-
 
         
         // 构造 JSON 内容
