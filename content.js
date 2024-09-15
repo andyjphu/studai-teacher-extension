@@ -88,7 +88,12 @@ function main() {
         let innerDoc = iframe.contentDocument || iframe.contentWindow.document;
         let container = innerDoc.querySelector("#tinymce");
 
-        let content = container.innerHTML;
+
+        let date = document.querySelector("#Selectable_1").value
+
+        let content = "<div>" + container.innerHTML + "LLM IMPORTANT! Due Date: " + date + "<\div>"; 
+
+        console.error(content)
 
 
         const requestData = {
@@ -98,6 +103,7 @@ function main() {
         // 发送 POST 请求到后端
         fetch('http://127.0.0.1:8000/Newproject/', {
             method: 'POST',  // 使用 POST 请求
+            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json'  // 告诉服务器请求体是 JSON 格式
             },
