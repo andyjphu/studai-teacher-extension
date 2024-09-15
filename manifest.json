@@ -10,6 +10,11 @@
   "version": "1.0",
   "description": "Inject HTML and CSS into a webpage",
   "permissions": ["activeTab"],
+  "host_permissions": [
+    "http://localhost/*",
+    "http://127.0.0.1/*",
+    "https://your-backend-domain.com/*"
+  ],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

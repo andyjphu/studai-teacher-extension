@@ -9,3 +9,7 @@ Select Developer Mode
 Click Load Unpacked button 
 
 Select this folder (studai-teacher-extension)
+
+
+
+TODO: move the estimate time button elsewhere
