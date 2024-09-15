@@ -93,7 +93,7 @@ function main() {
 
         //let content = "<div>" + container.innerHTML + "LLM IMPORTANT! Due Date: " + date + "<\div>"; 
 
-        let content = container.innerHTML + "LLM IMPORTANT! Due Date: " + date ; 
+        let content = container.innerHTML + "LLM IMPORTANT! Due Date: " + date;
 
         //let content = container.innerHTML; 
         console.error(content)
@@ -143,30 +143,30 @@ function main() {
             });
     }
 
-    function submitToMailBox () {
+    function submitToMailBox() {
         fetch('http://127.0.0.1:8000/UploadToMailbox/', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             Content: JSON.stringify({
-              project: {
-                content: JSON.stringify({
-                  estimated_time: "2 hours",
-                  deadline: "2024-09-18T23:59:00",
-                  project_summary: "This project involves learning how to use Canvas, focusing on its features and functionalities to successfully complete the assignment by the given deadline."
-                }),
-                role: "assistant",
-                function_call: null,
-                tool_calls: null,
-                refusal: null
-              }
+                project: {
+                    content: JSON.stringify({
+                        estimated_time: "2 hours",
+                        deadline: "2024-09-18T23:59:00",
+                        project_summary: "This project involves learning how to use Canvas, focusing on its features and functionalities to successfully complete the assignment by the given deadline."
+                    }),
+                    role: "assistant",
+                    function_call: null,
+                    tool_calls: null,
+                    refusal: null
+                }
             })
-          })
-          .then(response => response.json())
-          .then(data => console.log(data))
-          .catch(error => console.error('Error:', error));
-          
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+
     }
 
     let saveButton = document.querySelector("#edit_assignment_form > div.form-actions > div.assignment__action-buttons > button.btn.btn-primary");
@@ -176,8 +176,14 @@ function main() {
 
     // Add an event listener to the div
     newDiv.addEventListener('click', handleClick);
-    saveButton.addEventListener('click', submitToMailBox);
-    saveAndPublishButton.addEventListener('click', submitToMailBox);
+
+    if (saveButton != null) {
+        saveButton.addEventListener('click', submitToMailBox);
+    }
+
+    if (saveAndPublishButton != null) {
+        saveAndPublishButton.addEventListener('click', submitToMailBox);
+    }
 
 
 
