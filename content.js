@@ -60,7 +60,7 @@ async function backendRequest(url, data) {
 
 function main() {
 
-
+    let mlResponse = null;
 
 
     if (!checkUrl()) {
@@ -132,6 +132,7 @@ function main() {
                     newElement.innerHTML = "[AI Generated estimated work time: " + data["project"]["content"].split('"estimated_time": "')[1].split('",\n')[0] + "]";
                     container.appendChild(newElement);
 
+                    mlResponse = data["project"]["content"];
 
                     console.log("CONTAINER EXISTS, APPENDED")
                 }
@@ -145,13 +146,20 @@ function main() {
 
     function submitToMailBox() {
 
+
+        let rDeadline = document.querySelector("#Selectable_1").value;
+        let rSummary = mlResponse.split('"project summary": "')[1].split('"\n')[0];
+        let rTime = mlResponse.split('"estimated_time": "')[1].split('",\n')[0];
+
+
+        
         // 构造 JSON 内容
         const projectContent = {
             project: {
                 content: JSON.stringify({
-                    estimated_time: "2 hours",
-                    deadline: "2024-09-18T23:59:00",
-                    project_summary: "This project involves learning how to use Canvas, focusing on its features and functionalities to successfully complete the assignment by the given deadline."
+                    estimated_time: rTime,
+                    deadline: rDeadline,
+                    project_summary: rSummary
                 }),
                 role: "assistant",
                 function_call: null,
