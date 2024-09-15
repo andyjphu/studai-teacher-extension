@@ -72,7 +72,7 @@ function main() {
     // Create a new div element with your content
     const newDiv = document.createElement('div');
     newDiv.innerHTML = `
-        <div>Estimate Time</div>
+        <div id="button-time">Estimate Time</div>
     `;
 
 
