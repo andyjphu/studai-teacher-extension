@@ -11,5 +11,4 @@ Click Load Unpacked button
 Select this folder (studai-teacher-extension)
 
 
-
-TODO: move the estimate time button elsewhere
+# note: was developed before agentic coding + if you want proof of winnings go to: https://ballot.hackmit.org/project/ptwmm-rhjde-kqhnm-nrvap (but it may be down)
